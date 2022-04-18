@@ -17,8 +17,9 @@ static void Main(IServiceProvider services)
     var displayManager = provider.GetRequiredService<DisplayManager>();
     var task = Task.Run(() =>
     {
-        provider.GetRequiredService<DisplayManager>().InitializeCached();
+        displayManager.InitializeCached();
     });
+    
     task.Wait();
 }
 
