@@ -17,15 +17,9 @@ namespace CachingExample
             employees.ForEach(employee => Console.WriteLine(employee));
         }
 
-        public static async Task InitializeAsync()
+        public void InitializeCached()
         {
-            var employees = await DataService.GetEmployeesAsync();   
-            employees.ForEach(employee => Console.WriteLine(employee));
-        }
-
-        public async Task InitializeCached()
-        {
-            var employees = await _dataSource.GetEmployeesCached();
+            var employees = _dataSource.GetEmployeesCached();
             employees.ForEach(employee => Console.WriteLine(employee));
         }
     }

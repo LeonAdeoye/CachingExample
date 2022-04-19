@@ -10,8 +10,6 @@ namespace CachingExample
     {
         public string FirstName { get; set; }
         public string LastName { get; set; } 
-        public override String ToString() => FirstName + " " + LastName;
-       
-
+        public override String ToString() => $"{FirstName} {LastName}";
     }
 }
