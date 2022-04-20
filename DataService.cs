@@ -1,9 +1,4 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CachingExample
 {
@@ -11,6 +6,8 @@ namespace CachingExample
     {
         private readonly IMemoryCache _memoryCache;
         private static readonly string EMPLOYEES = "employees";
+        //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType); // If you wish to leverage reflection.
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger("DataService");
         public DataService(IMemoryCache memoryCache)
         {
             _memoryCache = memoryCache;
@@ -36,10 +33,11 @@ namespace CachingExample
                 employees.Add(new() { FirstName = "Harper", LastName = "Adeoye" });
                 employees.Add(new() { FirstName = "Saori", LastName = "Adeoye" });
                 _memoryCache.Set(EMPLOYEES, employees, TimeSpan.FromMinutes(1)); // You only want the cache to live for one minute.
-                Console.WriteLine("\nRetreiving from the database:");
+                log.Info("Retreiving from the database:\n");
+
             }
             else
-                Console.WriteLine("\nRetreiving from the EMPLOYEES cache:");
+                log.Info("Retreiving from the EMPLOYEES cache:\n");
 
             return employees;
         }

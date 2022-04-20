@@ -4,6 +4,9 @@ using CachingExample;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+// Configure log4net to point to app.config
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
+
 
 using var host = Host.CreateDefaultBuilder(args).ConfigureServices((_, services) 
     => services.AddMemoryCache()
