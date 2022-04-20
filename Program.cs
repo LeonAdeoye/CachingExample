@@ -1,13 +1,14 @@
 ﻿
+using BenchmarkDotNet.Attributes;
 using CachingExample;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 
 using var host = Host.CreateDefaultBuilder(args).ConfigureServices((_, services) 
     => services.AddMemoryCache()
     .AddSingleton<DisplayManager>()
     .AddSingleton<DataService>()).Build();
-
 
 static async Task Main(IServiceProvider services)
 {
@@ -23,8 +24,10 @@ static async Task Main(IServiceProvider services)
 
     var firstTask = Task.Run(() => displayManager.InitializeCached());
     await firstTask.ContinueWith((antecedent) => displayManager.InitializeCached());
-
-
 }
 
 await Main(host.Services);
+
+BenchmarkExample.BenchmarkDemo.Main();
+
+
