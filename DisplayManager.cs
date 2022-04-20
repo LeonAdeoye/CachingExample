@@ -5,6 +5,7 @@ namespace CachingExample
     internal class DisplayManager
     {
         private readonly DataService _dataSource;
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger("DataService");
 
         public DisplayManager(DataService dataService)
         {
@@ -14,13 +15,13 @@ namespace CachingExample
         public static void Initialize()
         {           
             var employees = DataService.GetEmployees();
-            employees.ForEach(employee => Console.WriteLine(employee));
+            employees.ForEach(employee => log.Info(employee));
         }
 
         public void InitializeCached()
         {
             var employees = _dataSource.GetEmployeesCached();
-            employees.ForEach(employee => Console.WriteLine(employee));
+            employees.ForEach(employee => log.Info(employee));
         }
     }
 }
