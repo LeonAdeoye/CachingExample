@@ -1,8 +1,8 @@
-﻿
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkNamespace;
 using CachingExample;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RecordNamespace;
 
 // Configure log4net to point to app.config
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 
 using var host = Host.CreateDefaultBuilder(args).ConfigureServices((_, services) 
     => services.AddMemoryCache()
-    .AddSingleton<DisplayManager>()
+    .AddSingleton<DisplayManager>().AddHttpClient()
     .AddSingleton<DataService>()).Build();
 
 static async Task Main(IServiceProvider services)
@@ -31,6 +31,8 @@ static async Task Main(IServiceProvider services)
 
 await Main(host.Services);
 
-BenchmarkExample.BenchmarkDemo.Main();
+BenchmarkDemo.Main();
+
+RecordExample.Main();
 
 

@@ -2,7 +2,7 @@
 using BenchmarkDotNet.Running;
 using System.Text;
 
-namespace BenchmarkExample
+namespace BenchmarkNamespace
 {
     // To get the benchmarks you need to select the "Start Without Debugging" menu option from the Debug menu.
     [MemoryDiagnoser]
