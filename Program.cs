@@ -3,6 +3,7 @@ using CachingExample;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RecordNamespace;
+using DateTimeNameSpace;
 
 // Configure log4net to point to app.config
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
@@ -10,7 +11,7 @@ using RecordNamespace;
 
 using var host = Host.CreateDefaultBuilder(args).ConfigureServices((_, services) 
     => services.AddMemoryCache()
-    .AddSingleton<DisplayManager>().AddHttpClient()
+    .AddSingleton<DisplayManager>()
     .AddSingleton<DataService>()).Build();
 
 static async Task Main(IServiceProvider services)
@@ -35,4 +36,4 @@ BenchmarkDemo.Main();
 
 RecordExample.Main();
 
-
+DateTimeExample.Main();
